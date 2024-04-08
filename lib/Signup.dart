@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/Login.dart';
+
 import 'package:fluttertoast/fluttertoast.dart';
 
 
@@ -19,12 +19,14 @@ class SignAppState extends State<SignApp>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
-      debugShowCheckedModeBanner: false
-      ,
+     
+      debugShowCheckedModeBanner: false,
       home: Scaffold(appBar: AppBar(title: Text("Signup page "),
       ),
-      body: Container(child: Column(
-        children: [ Row(children: [
+      body: Container(
+        child: Column(
+        children: [ Row
+        (children: [
           Text("Email"),
           Text(widget.sEmail),
         ],
@@ -51,6 +53,8 @@ class SignAppState extends State<SignApp>{
              Fluttertoast.showToast(msg: "Transgender");
            });}),
         Text("Transgender"),
+        
+        
 
         ],),
        

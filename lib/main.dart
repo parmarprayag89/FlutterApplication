@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_application/Signup.dart';
+import 'package:flutter_application/home.dart';
 
 
 
 
 void main() {
-  runApp(SignApp("test@gmail.com","12345"));
+  runApp(homepage("Kush@gmail.com","Kush"));
 }
 
 class MyApp extends StatelessWidget {
