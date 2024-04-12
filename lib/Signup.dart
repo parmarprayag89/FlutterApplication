@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
@@ -14,12 +16,19 @@ class SignApp extends StatefulWidget{
 }
 
 class SignAppState extends State<SignApp>{
+
+List<String>  techArray =[];
+
   int iRadiogroup = 0;
+  
+  bool android = false;
+  bool flutter = false;
+  bool java= false;
+  
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
-     
       debugShowCheckedModeBanner: false,
       home: Scaffold(appBar: AppBar(title: Text("Signup page "),
       ),
@@ -56,7 +65,54 @@ class SignAppState extends State<SignApp>{
         
         
 
-        ],),
+        ],
+        
+        ),
+        Row(
+          children: [
+            Checkbox(value: android, onChanged: (value){
+              setState(() {
+                android = value! ;
+                techMethod(value,"android");
+              });
+              
+            }
+            ),
+            Text("Android"),
+          ],
+        ),
+         Row(
+          children: [
+            Checkbox(value: flutter , onChanged: (value){
+              setState(() {
+                flutter = value! ;
+                techMethod(value,"flutter");
+              });
+              
+            }
+            ),
+            Text("flutter"),
+          ],
+        ),
+         Row(
+          children: [
+            Checkbox(value: java , onChanged: (value){
+              setState(() {
+                java = value! ;
+                techMethod(value,"java");
+              });
+              
+            }
+            ),
+            Text("java "),
+          ],
+        ),
+       
+       
+       
+
+      
+        
        
         ],
       )
@@ -71,4 +127,20 @@ class SignAppState extends State<SignApp>{
     
     
   }
+
+  void techMethod(isSelected,message){
+    if(isSelected){
+      techArray.add(message);
+  
+    }
+    else{
+      techArray.removeWhere((element) => element == message);
+    }
+    
+    print(techArray);
+
+  }
+  
+ 
+ 
 }

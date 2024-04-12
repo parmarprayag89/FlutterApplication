@@ -5,15 +5,21 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class homepage extends StatefulWidget{
   @override
-  String sEmail,sPaaword;
-  homepage(this.sEmail,this.sPaaword);
+  String sEmail1,sPassword1;
+  homepage(this.sEmail1,this.sPassword1);
   Homepagestate createState() =>  Homepagestate();
 
 }
 
 class Homepagestate extends State<homepage>{
 
- int  iRadiogroup = 0;
+  int  iRadiogroup = 3;
+  bool androidchek = false;
+  bool javachek = false;
+  bool phpchek = false;
+  bool ioschek = false;
+
+  List<String> technologyArray = [];
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +37,7 @@ class Homepagestate extends State<homepage>{
                 Text("Email "),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
-                  child: Text(widget.sEmail),
+                  child: Text(widget.sEmail1),
                 ) ,        
               ],
               
@@ -41,7 +47,7 @@ class Homepagestate extends State<homepage>{
                     Text("Password"),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: Text(widget.sPaaword),
+                      child: Text(widget.sPassword1),
                     )
                   ],
                   ),
@@ -68,7 +74,60 @@ class Homepagestate extends State<homepage>{
                   } ),
                    Text("Transgender"),
 
-                  ],)
+                  ],
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(value: androidchek, onChanged: (value){
+                        setState(() {
+                          
+                          androidchek = value!;
+                          technologyMethod(value,"Anroid");
+                        });
+                        
+                      }),
+                      Text("Android"),
+                    ],
+                  ),
+                   Row(
+                    children: [
+                      Checkbox(value: javachek, onChanged: (value){
+                        setState(() {
+                          
+                          javachek = value!;
+                          technologyMethod(value,"java");
+                        });
+                        
+                      }),
+                      Text("java"),
+                    ],
+                  ),
+                   Row(
+                    children: [
+                      Checkbox(value: phpchek, onChanged: (value){
+                        setState(() {
+                           
+                          phpchek = value!;
+                          technologyMethod(value,"php");
+                        });
+                        
+                      }),
+                      Text("php"),
+                    ],
+                  ),
+                   Row(
+                    children: [
+                      Checkbox(value: ioschek, onChanged: (value){
+                        setState(() {
+                          ioschek = value!;
+                           technologyMethod(value,"ios");
+                        });
+                        
+                      }),
+                      Text("ios"),
+                    ],
+                  ),
+                  
                  
           ],
           
@@ -86,5 +145,19 @@ class Homepagestate extends State<homepage>{
     
     
   }
+  
+  void technologyMethod(isSelected, message) {
+    if(isSelected){
+      
+     technologyArray.add(message);
+    }
+    else{
+      technologyArray.removeWhere((element) => element == message);
+    }
+    print(technologyArray);
+
+  }
 }
+
+
 

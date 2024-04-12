@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/Signup.dart';
+
 import 'package:fluttertoast/fluttertoast.dart';
+
+class login extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: login1()
+    );
+  }
+
+}
 
 
 class login1 extends StatefulWidget{
@@ -13,6 +26,7 @@ class login1 extends StatefulWidget{
 class Login1state extends State<login1>{
 
   GlobalKey<FormState> formkey = new GlobalKey();
+  var sEmail1 , sPassword1;
  
 
   @override
@@ -52,6 +66,10 @@ class Login1state extends State<login1>{
                   labelText: "Email id ",
                   prefixIcon: Icon(Icons.email),
                ),
+               
+               onSaved: (email1) { 
+                sEmail1 = email1;
+               },
                validator: (emailinput) {
                 if(emailinput!.isEmpty){
                   return "Email id required";
@@ -90,6 +108,10 @@ class Login1state extends State<login1>{
                   labelText: "Password ",
                   prefixIcon: Icon(Icons.lock),
                 ),
+                
+                 onSaved: (password1) { 
+                sPassword1 = password1;
+               },
                 validator: (password){
                   if(password!.isEmpty || password == ""){
                     return "password required";
@@ -109,7 +131,8 @@ class Login1state extends State<login1>{
               child: Center(
                 child: TextButton(
                   onPressed: () {
-                    
+               
+                  
                     if(formkey.currentState!.validate()){
                       formkey.currentState!.save();
                       
@@ -118,15 +141,8 @@ class Login1state extends State<login1>{
                       gravity: ToastGravity.CENTER,
                       msg: "Login successfully"  ,
                       toastLength: Toast.LENGTH_LONG);
-
-                      
-                       
-
                      
-
-
-                      
-
+                   
                     }
                    
                       

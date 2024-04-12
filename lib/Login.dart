@@ -1,7 +1,22 @@
 // ignore_for_file: unnecessary_new
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application/ListDemo.dart';
+import 'package:flutter_application/Signup.dart';
+
+import 'package:flutter_application/home.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+class Login extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: LoginApp(),
+    );
+  }
+}
 
 class LoginApp extends StatefulWidget{
   @override
@@ -18,9 +33,7 @@ class LoginAppState extends State<LoginApp>{
   Widget build(BuildContext context) {
     // TODO: implement build
    
-      return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+      return Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 225, 216, 253),
           
@@ -54,6 +67,7 @@ class LoginAppState extends State<LoginApp>{
                     labelText: "Enter email Id",
                     prefixIcon: Icon(Icons.email),
                   ),
+                 
                   validator: (emailinput) {
                     if(emailinput!.isEmpty || emailinput == "" ){
                       return " email id requried";
@@ -72,32 +86,37 @@ class LoginAppState extends State<LoginApp>{
                   },
                 ),
               ),
-              
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextFormField(
-                    obscureText: true,
-                  decoration: InputDecoration(
-                    
-                    border: OutlineInputBorder(),
-                    
-                    labelText: "Enter Password",
-                    prefixIcon: Icon(Icons.password),
-                  
+           
+              padding: const EdgeInsets.all(10.0),
+              child: TextFormField(
+                keyboardType: TextInputType.text,
+               obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5)
                   ),
-                  validator: (passwordinput) {
-                    if(passwordinput!.isEmpty  ){
-                      return " email id requried";
-
-                    }
-                   
-                    
-                  },
-                   onSaved: (passwordinput){
-                    sPassword = passwordinput!;
-                  },
-                  ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(3)),
+                  labelText: "Password ",
+                  prefixIcon: Icon(Icons.lock),
                 ),
+                onSaved: (pass){
+                  sPassword = pass!;
+                
+                },
+                
+                validator: (password){
+                  if(password!.isEmpty || password == ""){
+                    return "password required";
+                  }
+                  else{ 
+                    return null;
+                  }
+                },
+                
+              ),
+            ),
 
                  Container(
                  color: Colors.amberAccent,
@@ -105,6 +124,8 @@ class LoginAppState extends State<LoginApp>{
                 children: [
                  
                   TextButton(onPressed: () {
+
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SignApp(sEmail, sPassword)));
                     
                       if(formkey.currentState!.validate()){
                         formkey.currentState!.save();
@@ -118,8 +139,9 @@ class LoginAppState extends State<LoginApp>{
                   },
                    child: Text("Login"))
                 ],
-              ),)
-
+              ),
+              ),
+             
             ],
           ),
           
@@ -128,11 +150,6 @@ class LoginAppState extends State<LoginApp>{
 
 
               ],) ),
-             
-             
-
-             
-        ),
     );
   
   }
